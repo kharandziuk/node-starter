@@ -1,0 +1,32 @@
+# -*- mode: yaml-*-
+# vi: set ft=yaml sw=2 ts=2 :
+
+- name: Configure redis
+  hosts: all
+  sudo: True
+  tasks:
+    - name: set locale
+      lineinfile: dest=/etc/default/locale line="LC_ALL=C"
+
+    - name: install packages
+      apt: name={{ item }} update_cache=yes
+      with_items:
+        - git
+        - curl
+
+    - name: add ppa with node and redis
+      shell: curl -sL https://deb.nodesource.com/setup | bash -
+
+    - name: install node and npm
+      apt: name=nodejs update_cache=yes
+
+    - name: install docker
+      shell: curl -sSL https://get.docker.com/ | sh
+      args:
+        creates: /usr/bin/docker
+
+    - name: install node dependencies
+      npm: path=/opt/project
+
+    - name: change working directory
+      lineinfile: dest=/home/vagrant/.bashrc line='cd /opt/project'
