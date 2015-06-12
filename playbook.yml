@@ -20,11 +20,6 @@
     - name: install node and npm
       apt: name=nodejs update_cache=yes
 
-    - name: install docker
-      shell: curl -sSL https://get.docker.com/ | sh
-      args:
-        creates: /usr/bin/docker
-
     - name: install node dependencies
       npm: path=/opt/project
 
