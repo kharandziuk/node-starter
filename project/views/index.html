@@ -6,8 +6,15 @@
 </head>
 <body>
   It works
+  <script src="/socket.io/socket.io.js"></script>
   <script>
-    alert('kapa');
+    (function(io){
+      var socket = io();
+      socket.on('connect', function(){
+        socket.emit('answer');
+      });
+
+    })(io)
   </script>
 </body>
 </html>
