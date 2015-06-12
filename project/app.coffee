@@ -40,5 +40,4 @@ app.post('/event', (req, res) ->
   )
 )
 
-
 app.listen(8000)
