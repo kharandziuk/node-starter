@@ -4,3 +4,7 @@ ansible-provisioner
 node
 coffee
 nodemon
+
+
+diff:
+with mongo sample
